@@ -5,24 +5,6 @@ import { LoggerWithCaching } from './model/class/logger-plugins/cache/CacheConfi
 import { LoggerConfig } from './model/interfaces/logger-config.interface';
 import { LoggerReporter } from './model/class/logger-plugins/logger-server-reporter';
 
-/**
- *  Logger Factory
- *  @description LoggerFactory is responsible for log different types of  severities logs
- *  you can customize the logger behavior  by defining GlobalConfig/Overbidding the existing GlobalConfig 
- *  by creating a "local logger" instance.
- *  !Please note:
- *  !There is a default configuration in-place {@see LOGGER_CONFIG | LOGGER_CONFIG}
- *  !You don't have to create an instance of the logger to get started you can just do 
- *   @example 
- *    ```ts
- *    LoggerFactory.warn(''text" );
- *    LoggerFactory.info(''text" );
-*     LoggerFactory.error(''Error text" );
- *   ```
- *   todo: add Proxy Guard for the plugins
-
- * 
- */
 export class LoggerFactory {
   private static reporter = new LoggerReporter()
   private static config: LoggerConfig = LOGGER_CONFIG;
@@ -44,8 +26,9 @@ export class LoggerFactory {
      * ?: which is a better option "caching as" :
      * ?1. global & singleton
      * ?2.  local instances (which inherited from the global instance)
-     *  if so, I need to create uniqueId by some repeatable logic, could be the URL that the log was emitted (as key in the localStorage) / GroupBy Type (error/info etc ...) 
-    **/
+     * need to create uniqueId by some repeatable logic,
+     * could be the URL that the log was emitted localStorageKey/GroupByType (error/info etc ...) 
+     **/
     if (CacheManager.typeGuard(config)) {
       this.cacheManger = new CacheManager(config)
     }
