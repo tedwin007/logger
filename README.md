@@ -40,7 +40,8 @@ Such as:
     let localLogger = LoggerFactory.create({ colors: { ERROR: "red", WARN: "orange", INFO: "blue" } });
     localLogger.logInfo("blue");
     LoggerFactory.info(" red");
-  // Changing the global config will not effect the local scope config but will effect any future logger's instances that will be created
+  // Changing the global config will not effect the local scope config 
+  // but will effect any future logger's instances that will be created
     const globalConfig = LoggerFactory.getGlobalConfig()
     localLogger = LoggerFactory.create({ ...globalConfig, reportOnly: globalConfig.reportOnly });
     localLogger.logInfo("did not change");
