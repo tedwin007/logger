@@ -1,22 +1,22 @@
 # Logger
 This logger will be packed to an npm package.
-The motivation for creating this logger is to create a common "language"
-between a simple logger (display logs) and a reporter (BE) on different projects .
-In my case 
-l want to use the same logger in my e2e framework, Reporter BE and Cypress with minimum changes.
+The motivation for creating this logger is to create a common "language" in different env
 
-there are other solution out there like ngx-logger [https://www.npmjs.com/package/ngx-logger]
-that is commonly used, and was design specifically for angular.
+In my case I want to use it in the: 
+- UI (Angular)
+- BE Reporter (Reciver, NodeJS)
+- E2E (Cypress)
 
-unfourtrnlly it was lacking some features I needed (some are not yet developed in this logger either):
- * Bulk - grouping multiple logs together (network friendly)
+there is ngx-logger [https://www.npmjs.com/package/ngx-logger] that is commonly used, and frequently get updated. 
+Unfourtrnlly it lack some features as:
+ * Bulk Support - grouping multiple logs together (network friendly)
  * Caching - in cases like network disconnections we may lose the very data we need the must to identify the issue.
  * MultiFramework - Design for Angular, work only on Angular
 
   ## Logger Factory
- LoggerFactory is responsible for log different types of severities logs.
-  - You don't have to create an instance of the logger
-  - There is a default configuration in-place {@see LOGGER_CONFIG | LOGGER_CONFIG}
+ LoggerFactory is responsible for creating new logger instances,has a "global, defualt" behaviour so...
+   - There is a default configuration (LOGGER_CONFIG)
+   - You don't have to create an instance of the logger, you can use it as a global logger (such as console.log)
  
  ### To get started you can just: 
    ```ts
