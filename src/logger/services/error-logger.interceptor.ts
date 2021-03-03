@@ -9,7 +9,7 @@ import {
 import { Observable, throwError } from "rxjs";
 import { catchError } from "rxjs/operators";
 import { ErrorLogItem } from "../model/class/logger-types";
-import { LoggerFactory } from "../logger.class";
+import { Logger } from "../logger.class";
 
 @Injectable()
 export class ErrorLogger implements HttpInterceptor, ErrorHandler {
@@ -19,7 +19,7 @@ export class ErrorLogger implements HttpInterceptor, ErrorHandler {
   ): Observable<HttpEvent<any>> {
     return next.handle(request).pipe(
       catchError((error: HttpErrorResponse) => {
-        const config = LoggerFactory.getGlobalConfig();
+        const config = Logger.getGlobalConfig();
         const logItemClass = new ErrorLogItem(
           error.message,
           error.name,
@@ -32,6 +32,6 @@ export class ErrorLogger implements HttpInterceptor, ErrorHandler {
   }
 
   public handleError(error: ErrorLogItem | Error): Promise<any> {
-    return LoggerFactory.error(error);
+    return Logger.error(error);
   }
 }

@@ -15,37 +15,38 @@ Such as:
  * MultiFramework - Design for Angular, work only on Angular
 
   ## Logger Factory
- LoggerFactory is responsible for creating new logger instances,has a "global, defualt" behaviour so...
+ Logger is responsible for creating new logger instances,has a "global, defualt" behaviour so...
    - There is a default configuration (LOGGER_CONFIG)
    - You don't have to create an instance of the logger, you can use it as a global logger (such as console.log)
  
  ### To get started you can just: 
    ```ts
-    LoggerFactory.warn('text');
-    LoggerFactory.info('text');
-    LoggerFactory.error('error text');
+    Logger.warn('text');
+    Logger.info('text');
+    Logger.error('error text');
    ```
 
  ### You can customize the logger by:
   - Define a Global Config 
-``` LoggerFactory.setGlobalConfig(config)```
+``` Logger.setGlobalConfig(config)```
   - Override the existing Global Config on a local instance 
-``` const localLogger = LoggerFactory.create(config)```
+``` const localLogger = Logger.create(config)```
 ### Scope example:
 ```ts
   // Changing the global config 
-    LoggerFactory.setGlobalConfig({ colors: { ERROR: "red", WARN: "red", INFO: "red" } });
-    LoggerFactory.info("red");
+    Logger.setGlobalConfig({ colors: { ERROR: "red", WARN: "red", INFO: "red" } });
+    Logger.info("red");
   // Customize the colors of local's logger 
-    let localLogger = LoggerFactory.create({ colors: { ERROR: "red", WARN: "orange", INFO: "blue" } });
+    let localLogger = Logger.create({ colors: { ERROR: "red", WARN: "orange", INFO: "blue" } });
     localLogger.logInfo("blue");
-    LoggerFactory.info(" red");
+    Logger.info(" red");
   // Changing the global config will not effect the local scope config 
   // but will effect any future logger's instances that will be created
-    const globalConfig = LoggerFactory.getGlobalConfig()
-    localLogger = LoggerFactory.create({ ...globalConfig, reportOnly: globalConfig.reportOnly });
+    const globalConfig = Logger.getGlobalConfig()
+    localLogger = Logger.create({ ...globalConfig, reportOnly: globalConfig.reportOnly });
     localLogger.logInfo("did not change");
 ```
+
 ![alt Result](/Screenshot%202021-03-03%20222140.png)
 
 ## Todo:

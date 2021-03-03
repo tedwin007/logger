@@ -7,10 +7,10 @@ import {
 import { CommonModule } from "@angular/common";
 import { LOGGER_CONFIG } from "./constants/logger-config";
 import { ErrorLogger } from "./services/error-logger.interceptor";
-import { LoggerFactory } from "./logger.class";
+import { Logger } from "./logger.class";
 import { LoggerConfig } from "./model/interfaces/logger-config.interface";
 
-export const LoggerToken: InjectionToken<LoggerFactory> = new InjectionToken<LoggerFactory>("LoggerToken");
+export const LoggerToken: InjectionToken<Logger> = new InjectionToken<Logger>("LoggerToken");
 
 @NgModule({
   imports: [CommonModule]
@@ -26,8 +26,8 @@ export class LoggerModule {
         provide: LoggerToken,
         useFactory: () => {
           const rootConfig: LoggerConfig = { ...LOGGER_CONFIG, ...config };
-          LoggerFactory.setGlobalConfig(rootConfig);
-          return LoggerFactory.create(rootConfig);
+          Logger.setGlobalConfig(rootConfig);
+          return Logger.create(rootConfig);
         }
       }
       ]
@@ -41,7 +41,7 @@ export class LoggerModule {
         {
           provide: LoggerToken,
           useFactory: function () {
-            return LoggerFactory.create(config);
+            return Logger.create(config);
           }
         }
       ]

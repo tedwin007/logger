@@ -5,7 +5,7 @@ import { LoggerWithCaching } from './model/class/logger-plugins/cache/CacheConfi
 import { LoggerConfig } from './model/interfaces/logger-config.interface';
 import { LoggerReporter } from './model/class/logger-plugins/logger-server-reporter';
 
-export class LoggerFactory {
+export class Logger {
   private static reporter = new LoggerReporter()
   private static config: LoggerConfig = LOGGER_CONFIG;
 
@@ -18,9 +18,9 @@ export class LoggerFactory {
 
   protected constructor(config: LoggerConfig | LoggerWithCaching) {
     this.config = config;
-    this.logError = LoggerFactory.error.bind(this);
-    this.logWarn = LoggerFactory.warn.bind(this);
-    this.logInfo = LoggerFactory.info.bind(this);
+    this.logError = Logger.error.bind(this);
+    this.logWarn = Logger.warn.bind(this);
+    this.logInfo = Logger.info.bind(this);
 
     /**
      * ?: which is a better option "caching as" :
@@ -35,33 +35,33 @@ export class LoggerFactory {
   }
 
   // Global Logger
-  static create(config: Partial<LoggerConfig | LoggerWithCaching>): LoggerFactory {
-    return new LoggerFactory({ ...LoggerFactory.getGlobalConfig(), ...config });
+  static create(config: Partial<LoggerConfig | LoggerWithCaching>): Logger {
+    return new Logger({ ...Logger.getGlobalConfig(), ...config });
   }
 
   static setGlobalConfig(config: LoggerConfig) {
-    LoggerFactory.config = { ...LoggerFactory.config, ...config };
+    Logger.config = { ...Logger.config, ...config };
   }
 
   static getGlobalConfig(): LoggerConfig {
-    return LoggerFactory.config;
+    return Logger.config;
   }
 
   static async error(item: Error | ErrorLogItem | string): Promise<ErrorLogItem | null | any> {
-    const config = this?.config;
+    const config = this.config;
     const logItem = ErrorLogItem.toErrorItem(item, config);
-    return LoggerFactory.reporter.report(logItem, config);
+    return Logger.reporter.report(logItem, config);
   }
 
   static async warn(message: string): Promise<ErrorLogItem | null | any> {
-    const config = this?.config;
+    const config = this.config;
     const logItem = new WarnLogItem(message, 'code_origin', config);
-    return LoggerFactory.reporter.report(logItem, config);
+    return Logger.reporter.report(logItem, config);
   }
 
   static async info(message: string): Promise<ErrorLogItem | null | any> {
-    const config = this?.config;
+    const config = this.config;
     const logItem = new InfoLogItem(message, 'code_origin', config);
-    return LoggerFactory.reporter.report(logItem, config);
+    return Logger.reporter.report(logItem, config);
   }
 }
