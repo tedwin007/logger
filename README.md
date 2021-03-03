@@ -7,15 +7,15 @@ the motivation for this package is to create a unified "Logging language":
 
 there is ngx-logger [https://www.npmjs.com/package/ngx-logger] that is commonly used, and frequently get updated.
 
-Unfourtrnlly it lack some features I needs
+Unfourtrnlly it lacks some features I need
 
 Such as:
- * Bulk Support - grouping multiple logs together (network friendly)
- * Caching - in cases like network disconnections we may lose the very data we need the must to identify the issue.
+ * Bulk Support - grouping multiple logs together (network-friendly)
+ * Caching - in cases like network disconnections we may lose the very data we need the most to identify the issue.
  * MultiFramework - Design for Angular, work only on Angular
 
   ## Logger Factory
- Logger is responsible for creating new logger instances,has a "global, defualt" behaviour so...
+ The logger is responsible for creating new logger instances, has a "global, default" behavior so...
    - There is a default configuration (LOGGER_CONFIG)
    - You don't have to create an instance of the logger, you can use it as a global logger (such as console.log)
  
@@ -50,15 +50,15 @@ Such as:
 ![alt Result](/Screenshot%202021-03-03%20222140.png)
 
 ## Todo:
-1.  Abstract & extract all browser related functionality 
+1.  Abstract & extract all browser-related functionality 
 2.  Create a plugin creature and a register method in the logger
 3.  Extract angular service from the package 
-4.  Use axios to make http request and add it as a "peer dep"
+4.  Use Axios to make an HTTP request and add it as a "peer dep"
 5.  Pack & install 
-6.  Use the npm package in  the Logger's (angular) module. 
+6.  Use the npm package in the Logger's (angular) module. 
 
 ## Features that are WIP
 - Bulk - network friendlily 
-- Global Config As A Stream - changes will effect both future and prev instances
+- Global Config As A Stream - changes will affect both future and prev instances
 - Better Tracking (trace)
 
