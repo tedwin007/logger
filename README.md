@@ -32,19 +32,20 @@ such as:
 ``` const localLogger = LoggerFactory.create(config)```
 ### Scope example:
 ```ts
-  //  Changing the root config 
+  // Changing the global config 
     LoggerFactory.setGlobalConfig({ colors: { ERROR: "red", WARN: "red", INFO: "red" } });
     LoggerFactory.info("red");
-  // Customize logs colors in a local's logger 
+  // Customize the colors of local's logger 
     let localLogger = LoggerFactory.create({ colors: { ERROR: "red", WARN: "orange", INFO: "blue" } });
     localLogger.logInfo("blue");
     LoggerFactory.info(" red");
-  // Changing the root config , will not effect the local scope config  
-  //  But will effect any new logger's instances  that will be created
+  // Changing the global config will not effect the local scope config but will effect any future logger's instances that will be created
     const globalConfig = LoggerFactory.getGlobalConfig()
     localLogger = LoggerFactory.create({ ...globalConfig, reportOnly: globalConfig.reportOnly });
     localLogger.logInfo("did not change");
 ```
+
+![alt Result](/Screenshot%202021-03-03%20222140.png)
 
 ## Todo:
 1.  Abstract & extract all browser related functionality 
@@ -59,6 +60,3 @@ such as:
 - Global Config As A Stream - changes will effect both future and prev instances
 -  Better Tracking (trace)
 
-
-
-![alt Result](/Screenshot%202021-03-03%20222140.png)
