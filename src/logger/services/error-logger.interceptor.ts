@@ -8,8 +8,8 @@ import {
 } from "@angular/common/http";
 import { Observable, throwError } from "rxjs";
 import { catchError } from "rxjs/operators";
-import { Logger } from "../model";
 import { ErrorLogItem } from "../model/class/logger-types";
+import { LoggerFactory } from "../logger.class";
 
 @Injectable()
 export class ErrorLogger implements HttpInterceptor, ErrorHandler {
@@ -19,10 +19,11 @@ export class ErrorLogger implements HttpInterceptor, ErrorHandler {
   ): Observable<HttpEvent<any>> {
     return next.handle(request).pipe(
       catchError((error: HttpErrorResponse) => {
+        const config = LoggerFactory.getGlobalConfig();
         const logItemClass = new ErrorLogItem(
           error.message,
           error.name,
-          Logger.getRootConfig()
+          config
         );
         this.handleError(logItemClass);
         return throwError(error);
@@ -31,6 +32,6 @@ export class ErrorLogger implements HttpInterceptor, ErrorHandler {
   }
 
   public handleError(error: ErrorLogItem | Error): Promise<any> {
-    return Logger.error(error);
+    return LoggerFactory.error(error);
   }
 }

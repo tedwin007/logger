@@ -1,14 +1,12 @@
-import { SeverityColors } from './severity-color.interface';
 import { LogLevel } from '../../enums/log-level.enum';
+import { SeverityColors } from './severity-color.interface';
 
-export interface LoggerConfig {
+interface BaseLoggerConfig {
   apiPath: string;
   nativeLog: boolean;
   authorization: string | null;
-  cache: {
-    activateCache: boolean;
-    maxStackSize: number;
-  };
   colors: SeverityColors;
   reportOnly: LogLevel[];
 }
+
+export type LoggerConfig<T = any> = BaseLoggerConfig & T 

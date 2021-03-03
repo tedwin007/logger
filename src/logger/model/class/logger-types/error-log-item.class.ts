@@ -23,5 +23,13 @@ export class ErrorLogItem extends BaseLogItem implements Error {
   private setTrace() {
     this.trace = new Error(this.description).stack?.split('at ') || [];
   }
+
+  static toErrorItem(item: Error | ErrorLogItem | string, config: LoggerConfig): ErrorLogItem {
+    if (typeof item !== 'string') {
+      return 'trace' in item ? item : new ErrorLogItem(item.message, item.name, config);
+    } else {
+      return new ErrorLogItem(item, 'Unnamed', config);
+    }
+  }
 }
 
