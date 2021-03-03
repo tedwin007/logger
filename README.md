@@ -1,14 +1,15 @@
 # Logger, wannabe npm package (will be)
 
-motivation: to create a common "Logging language" in different & multiple env
-I want to use it in: 
+the motivation for this package is to create a unified "Logging language": 
 - UI (Angular)
 - BE Reporter (Reciver, NodeJS)
 - E2E (Cypress)
 
 there is ngx-logger [https://www.npmjs.com/package/ngx-logger] that is commonly used, and frequently get updated.
-Unfourtrnlly it lack some features
-such as:
+
+Unfourtrnlly it lack some features I needs
+
+Such as:
  * Bulk Support - grouping multiple logs together (network friendly)
  * Caching - in cases like network disconnections we may lose the very data we need the must to identify the issue.
  * MultiFramework - Design for Angular, work only on Angular
@@ -44,7 +45,6 @@ such as:
     localLogger = LoggerFactory.create({ ...globalConfig, reportOnly: globalConfig.reportOnly });
     localLogger.logInfo("did not change");
 ```
-
 ![alt Result](/Screenshot%202021-03-03%20222140.png)
 
 ## Todo:
@@ -58,5 +58,5 @@ such as:
 ## Features that are WIP
 - Bulk - network friendlily 
 - Global Config As A Stream - changes will effect both future and prev instances
--  Better Tracking (trace)
+- Better Tracking (trace)
 
