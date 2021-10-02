@@ -5,11 +5,9 @@ the motivation for this package is to create a unified "Logging language":
 - BE Reporter (Reciver, NodeJS)
 - E2E (Cypress)
 
-there is ngx-logger [https://www.npmjs.com/package/ngx-logger] that is commonly used, and frequently get updated.
+there is ngx-logger [https://www.npmjs.com/package/ngx-logger] that is commonly used, and frequently get's updated.
 
-Unfourtrnlly it lacks some features I need
-
-Such as:
+Unfourtrnlly at the moment, it lacks features as:
  * Bulk Support - grouping multiple logs together (network-friendly)
  * Caching - in cases like network disconnections we may lose the very data we need the most to identify the issue.
  * MultiFramework - Design for Angular, work only on Angular
