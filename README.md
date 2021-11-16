@@ -1,4 +1,4 @@
-# Logger, wannabe npm package (will be)
+# Logger
 
   ## Logger Factory
  The logger is responsible for creating new logger instances, has a "global, default" behavior so...
