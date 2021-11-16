@@ -1,17 +1,5 @@
 # Logger, wannabe npm package (will be)
 
-the motivation for this package is to create a unified "Logging language": 
-- UI (Angular)
-- BE Reporter (Reciver, NodeJS)
-- E2E (Cypress)
-
-there is ngx-logger [https://www.npmjs.com/package/ngx-logger] that is commonly used, and frequently get's updated.
-
-Unfourtrnlly at the moment, it lacks features as:
- * Bulk Support - grouping multiple logs together (network-friendly)
- * Caching - in cases like network disconnections we may lose the very data we need the most to identify the issue.
- * MultiFramework - Design for Angular, work only on Angular
-
   ## Logger Factory
  The logger is responsible for creating new logger instances, has a "global, default" behavior so...
    - There is a default configuration (LOGGER_CONFIG)
