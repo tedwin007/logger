@@ -37,7 +37,7 @@
 
 ## Todo:
 1.  Abstract & extract all browser-related functionality 
-2.  Create a plugin creature and a register method in the logger
+2.  Create a plugin entity and a register method in the logger
 3.  Extract angular service from the package 
 4.  Use Axios to make an HTTP request and add it as a "peer dep"
 5.  Pack & install 
